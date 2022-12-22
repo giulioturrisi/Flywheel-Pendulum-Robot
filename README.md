@@ -42,11 +42,16 @@ alias flywheel='docker exec -it flywheel_image bash' (to attach a new terminal t
 
 5. start docker and build
 ```sh
-flywheel
+flywheel_humble
 cd ros2_ws
 rosdep install -y -r -q --from-paths src --ignore-src --rosdistro humble
 ulimit -s unlimited
 colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
+```
+
+6. to attach additional terminals to the running docker use
+```sh
+flywheel
 ```
 
 ## List of available controllers
