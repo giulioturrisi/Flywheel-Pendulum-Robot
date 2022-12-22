@@ -32,6 +32,10 @@ RUN pip install casadi
 RUN pip install numba
 RUN pip install control
 
+RUN pip install xmlschema
+
+RUN apt install xsltproc
+
 
 # VISUALIZATION
 RUN apt-get update
