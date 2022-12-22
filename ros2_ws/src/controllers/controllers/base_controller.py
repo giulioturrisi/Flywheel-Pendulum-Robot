@@ -32,7 +32,7 @@ class Base_Controller(Node):
         
         self.subscription_state = self.create_subscription(Float64MultiArray,'state',self.state_callback,1)
 
-        self.publisher_command = self.create_publisher(Float64,"torque", 1);
+        self.publisher_command = self.create_publisher(Float64,"motor_cmd", 1);
 
  
         # Sincronization with simulation ---------------------------------------
