@@ -13,7 +13,8 @@ This repo contains the code for controlling both a real and a simulated two whee
 ## Dependencies
 1. [ROS2](https://docs.ros.org/en/humble/Installation.html) Humble
 
-2. [Gazebo Garden](https://gazebosim.org/home) for simulations 
+2. [CoppeliaSim](https://www.coppeliarobotics.com/downloads) and [Gazebo Garden](https://gazebosim.org/home)(TO DO) for simulations 
+
 
 
 
