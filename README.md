@@ -33,11 +33,11 @@ docker build -t ros2_flywheel .
 ```sh
 cd 
 gedit .bashrc
-alias flywheel_docker='xhost + && docker run -it --rm -v /path/to/your_folder/Self-Balancing-Robot:/home/ -v /tmp/.X11-unix:/tmp/.X11-unix:rw --device=/dev/input/ -e DISPLAY=$DISPLAY -e WAYLAND_DISPLAY=$WAYLAND_DISPLAY  -e QT_X11_NO_MITSHM=1 --gpus all --name flywheel_image ros2_flywheel'  (if used /nvidia)
-alias flywheel_docker="xhost + && docker run -it --rm -v /home/giulio/giulio_projects/Self-Balancing-Robot:/home/ -v /tmp/.X11-unix:/tmp/.X11-unix --device=/dev/dri --device=/dev/input/ -e DISPLAY=$DISPLAY -e WAYLAND_DISPLAY=$WAYLAND_DISPLAY --name flywheel_image  ros2_flywheel" (if used /integrated_gpu)
-alias flywheel_docker='xhost + && docker run -it --rm -v /path/to/your_folder/Self-Balancing-Robot:/home/ -v /tmp/.X11-unix:/tmp/.X11-unix -v /mnt/wslg:/mnt/wslg -v /usr/lib/wsl:/usr/lib/wsl --device=/dev/dxg -e DISPLAY=$DISPLAY -e WAYLAND_DISPLAY=$WAYLAND_DISPLAY -e XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR -e PULSE_SERVER=$PULSE_SERVER -e LD_LIBRARY_PATH=/usr/lib/wsl/lib --name flywheel_image ros2_flywheel' (if Windows Linux Subsystem)
+alias flywheel_humble='xhost + && docker run -it --rm -v /path/to/your_folder/Flywheel-Pendulum-Robot:/home/ -v /tmp/.X11-unix:/tmp/.X11-unix:rw --device=/dev/input/ -e DISPLAY=$DISPLAY -e WAYLAND_DISPLAY=$WAYLAND_DISPLAY  -e QT_X11_NO_MITSHM=1 --gpus all --name flywheel_image ros2_flywheel'  (if used /nvidia)
+alias flywheel_humble="xhost + && docker run -it --rm -v /path/to/your_folder/Flywheel-Pendulum-Robot:/home/ -v /tmp/.X11-unix:/tmp/.X11-unix --device=/dev/dri --device=/dev/input/ -e DISPLAY=$DISPLAY -e WAYLAND_DISPLAY=$WAYLAND_DISPLAY --name flywheel_image  ros2_flywheel" (if used /integrated_gpu)
+alias flywheel_humble='xhost + && docker run -it --rm -v /path/to/your_folder/Flywheel-Pendulum-Robot:/home/ -v /tmp/.X11-unix:/tmp/.X11-unix -v /mnt/wslg:/mnt/wslg -v /usr/lib/wsl:/usr/lib/wsl --device=/dev/dxg -e DISPLAY=$DISPLAY -e WAYLAND_DISPLAY=$WAYLAND_DISPLAY -e XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR -e PULSE_SERVER=$PULSE_SERVER -e LD_LIBRARY_PATH=/usr/lib/wsl/lib --name flywheel_image ros2_flywheel' (if Windows Linux Subsystem)
 
-alias flywheel_attach='docker exec -it flywheel_image bash' (to attach a new terminal to the running docker)
+alias flywheel='docker exec -it flywheel_image bash' (to attach a new terminal to the running docker)
 ```
 
 5. start docker and build
