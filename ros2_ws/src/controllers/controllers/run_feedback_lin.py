@@ -18,7 +18,7 @@ class Controller(Base_Controller):
 
         self.create_timer(self.dt, self.controller_callback)
         
-        self.k_d = 0.1        
+        self.k_d = 1        
         self.k_p = 50
         self.k_i = 0.1
 
