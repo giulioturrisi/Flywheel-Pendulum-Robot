@@ -9,7 +9,7 @@ from robot_dynamics import Robot_dynamics
 
 
 class Feedback_Lin:
-    """This is a small class that computes a simple PID control law"""
+    """This is a small class that computes a controller based on feedback linearization and a simple PID"""
 
 
     def __init__(self, k_p, k_d, k_i):
