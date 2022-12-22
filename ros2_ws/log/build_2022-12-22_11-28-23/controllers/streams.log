@@ -1,0 +1,31 @@
+[0.901s] Invoking command in '/home/ros2_ws/build/controllers': PS1=\[\e]0;\u@\h: \w\a\]\[\033[01;37m\]\u\[\033[00m\]@\[\033[01;32m\]\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] PYTHONPATH=/home/ros2_ws/build/controllers/prefix_override:/home/ros2_ws/install/controllers/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/ros2_ws/build/controllers/build --no-deps install_data
+[1.261s] running develop
+[1.263s] /usr/lib/python3/dist-packages/setuptools/command/easy_install.py:158: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.
+[1.263s]   warnings.warn(
+[1.267s] /usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[1.268s]   warnings.warn(
+[1.405s] running egg_info
+[1.406s] creating controllers.egg-info
+[1.406s] writing controllers.egg-info/PKG-INFO
+[1.406s] writing dependency_links to controllers.egg-info/dependency_links.txt
+[1.407s] writing entry points to controllers.egg-info/entry_points.txt
+[1.407s] writing requirements to controllers.egg-info/requires.txt
+[1.408s] writing top-level names to controllers.egg-info/top_level.txt
+[1.408s] writing manifest file 'controllers.egg-info/SOURCES.txt'
+[1.410s] reading manifest file 'controllers.egg-info/SOURCES.txt'
+[1.411s] writing manifest file 'controllers.egg-info/SOURCES.txt'
+[1.455s] running build_ext
+[1.455s] Creating /home/ros2_ws/install/controllers/lib/python3.10/site-packages/controllers.egg-link (link to .)
+[1.456s] Installing run_acados_nmpc script to /home/ros2_ws/install/controllers/lib/controllers
+[1.457s] Installing run_ilqr script to /home/ros2_ws/install/controllers/lib/controllers
+[1.457s] Installing run_lqr script to /home/ros2_ws/install/controllers/lib/controllers
+[1.457s] Installing run_pid script to /home/ros2_ws/install/controllers/lib/controllers
+[1.458s] 
+[1.458s] Installed /home/ros2_ws/build/controllers
+[1.458s] running install_data
+[1.458s] creating /home/ros2_ws/install/controllers/share/ament_index
+[1.459s] creating /home/ros2_ws/install/controllers/share/ament_index/resource_index
+[1.459s] creating /home/ros2_ws/install/controllers/share/ament_index/resource_index/packages
+[1.459s] copying resource/controllers -> /home/ros2_ws/install/controllers/share/ament_index/resource_index/packages
+[1.459s] copying package.xml -> /home/ros2_ws/install/controllers/share/controllers
+[1.497s] Invoked command in '/home/ros2_ws/build/controllers' returned '0': PS1=\[\e]0;\u@\h: \w\a\]\[\033[01;37m\]\u\[\033[00m\]@\[\033[01;32m\]\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] PYTHONPATH=/home/ros2_ws/build/controllers/prefix_override:/home/ros2_ws/install/controllers/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/ros2_ws/build/controllers/build --no-deps install_data
