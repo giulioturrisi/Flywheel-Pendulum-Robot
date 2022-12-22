@@ -17,9 +17,7 @@ class Controller(Base_Controller):
     def __init__(self):
         super().__init__('iLQR')
 
-        self.lin_state = np.zeros(7)
-        self.lin_state[1] = 0.0
-        self.controller = iLQR(dt = self.dt/10., lin_state = self.lin_state)
+        self.controller = iLQR(dt = self.dt)
 
         self.create_timer(self.dt, self.controller_callback)
 

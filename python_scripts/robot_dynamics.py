@@ -12,6 +12,8 @@ class Robot_dynamics:
         """
         Args: Nothing!
         """
+        self.state_dim = 3
+        self.control_dim = 1
         # Robot parameters -----------------------------------------
         self.m_pendulum = 0.3046 #mass pendulum - kg
         self.m_flywheel = 0.28 #mass flywheel - kg

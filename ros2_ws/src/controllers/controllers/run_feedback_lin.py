@@ -6,7 +6,7 @@ import numpy as np # type: ignore
 np.set_printoptions(threshold=sys.maxsize)
 
 sys.path.append('/home/python_scripts/controllers')
-from pid import PID 
+from feedback_lin import Feedback_Lin 
 sys.path.append('/home/ros2_ws/src/controllers/controllers')
 from base_controller import Base_Controller
 
@@ -14,17 +14,15 @@ from base_controller import Base_Controller
 
 class Controller(Base_Controller):
     def __init__(self):
-        super().__init__('PID')
+        super().__init__('Feedback_Lin')
 
         self.create_timer(self.dt, self.controller_callback)
         
-        self.k_x_d = 0        
-        self.k_roll = 500
-        self.k_roll_d = 25
-        self.k_yaw_d = 0.5
-        self.k_i = 0.01
+        self.k_d = 0.1        
+        self.k_p = 50
+        self.k_i = 0.1
 
-        self.controller = PID(self.k_x_d, self.k_roll, self.k_roll_d, self.k_yaw_d, self.k_i)
+        self.controller = Feedback_Lin(self.k_p, self.k_d, self.k_i)
 
 
 

@@ -21,7 +21,7 @@ setup(
     entry_points={
         'console_scripts': ['run_lqr = controllers.run_lqr:main',
                             'run_ilqr = controllers.run_ilqr:main',
-                            'run_pid = controllers.run_pid:main',
+                            'run_feedback_lin = controllers.feedback_lin:main',
                             'run_acados_nmpc = controllers.run_acados_nmpc:main'
         ],
     },
