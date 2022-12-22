@@ -10,7 +10,7 @@ sys.path.append('/home/python_scripts/')
 import euler_integration
 from robot_dynamics import Robot_dynamics
 
-X0 = np.array([0.1, 1, 0.0])  # Intitalize the states 
+X0 = np.array([1.8, 1, 0.0])  # Intitalize the states 
 N_horizon = 50  # Define the number of discretization steps
 T_horizon = 1.0  # Define the prediction horizon
 dt = 1.0/50
@@ -57,10 +57,10 @@ def create_ocp_solver_description() -> AcadosOcp:
     ocp.cost.yref = np.zeros((ny,))
     ocp.cost.yref_e = np.zeros((ny_e,))
 
-    # set constraints
-    #ocp.constraints.lbu = np.array([-F_max])
-    #ocp.constraints.ubu = np.array([+F_max])
-    #ocp.constraints.idxbu = np.array([0])
+    tau_max = 0.5 
+    ocp.constraints.lbu = np.array([-tau_max])
+    ocp.constraints.ubu = np.array([+tau_max])
+    ocp.constraints.idxbu = np.array([0])
 
     ocp.constraints.x0 = X0
 
@@ -92,7 +92,7 @@ def closed_loop_simulation():
 
 
     # prepare simulation
-    Nsim = 100
+    Nsim = 1000
     nx = ocp.model.x.size()[0]
     nu = ocp.model.u.size()[0]
 

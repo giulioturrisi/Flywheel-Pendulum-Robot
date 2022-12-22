@@ -29,11 +29,11 @@ class Controller(Base_Controller):
             print("state robot: ", self.state_robot)
             start_time = time.time()
 
-            torques = self.controller.compute_control(self.state_robot, self.state_d)
+            torque = self.controller.compute_control(self.state_robot, self.state_d.reshape(3,1))
             
             print("control time: ", time.time()-start_time)
 
-            self.publish_command(torques)
+            self.publish_command(torque)
 
 
         # Trigger next step Simulation ---------------------------------------

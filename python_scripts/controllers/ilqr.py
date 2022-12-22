@@ -40,13 +40,13 @@ class iLQR:
         self.Q = np.identity(self.state_dim)
         
         self.Q[0,0] = 10 #theta 
-        self.Q[1,1] = 1 #theta_dot
-        self.Q[2,2] = 0.2 #phi_dot
+        self.Q[1,1] = 0.1 #theta_dot
+        self.Q[2,2] = 0 #phi_dot
 
 
         
 
-        self.R = np.identity(1)*2
+        self.R = np.identity(1)
         
         # compute optimal cost to go LQR
         self.P = self.compute_discrete_LQR_P(self.lin_state, self.lin_tau)
@@ -289,8 +289,8 @@ class iLQR:
         
             #plt.plot(self.state_vec[:,1])
             #plt.show()
-        #print("control vec", self.control_vec)
-        return [self.control_vec[0,0]]
+        print("control vec", self.control_vec[0][0])
+        return self.control_vec[0][0][0]
 
 
 

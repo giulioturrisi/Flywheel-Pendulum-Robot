@@ -3,7 +3,7 @@ from rclpy.node import Node # type: ignore
 
 from std_msgs.msg import String, Bool, Float64, Float64MultiArray # type: ignore
 from tf2_msgs.msg import TFMessage # type: ignore
-from geometry_msgs.msg import PoseStamped, Twist # type: ignore
+from geometry_msgs.msg import PoseStamped, Twist, Vector3 # type: ignore
 import tf_transformations # type: ignore
 
 import copy
@@ -11,9 +11,8 @@ import matplotlib.pyplot as plt # type: ignore
 import math
 import time
 import numpy as np # type: ignore
-np.set_printoptions(threshold=sys.maxsize)
-
 import sys
+np.set_printoptions(threshold=sys.maxsize)
 sys.path.append('/home/python_scripts/')
 from robot_dynamics import Robot_dynamics
 
@@ -30,7 +29,7 @@ class Base_Controller(Node):
         self.state_d = np.zeros(self.robot.state_dim)
 
         
-        self.subscription_state = self.create_subscription(Float64MultiArray,'state',self.state_callback,1)
+        self.subscription_state = self.create_subscription(Vector3,'state',self.state_callback,1)
 
         self.publisher_command = self.create_publisher(Float64,"motor_cmd", 1);
 
@@ -51,17 +50,15 @@ class Base_Controller(Node):
 
     def publish_command(self, torque):
 
-        print("torque", torque)
-
-        commanded_torque = Float64();
+        commanded_torque = Float64()
         commanded_torque.data = np.float(torque)
-        self.publisher_command.publish(torque)
+        self.publisher_command.publish(commanded_torque)
 
 
     def state_callback(self, msg):
-        self.state_robot[0] = msg.theta
-        self.state_robot[1] = msg.theta_d
-        self.state_robot[2] = msg.phi_d
+        self.state_robot[0] = msg.x
+        self.state_robot[1] = msg.y
+        self.state_robot[2] = msg.z
 
         self.state_arrived = True
 

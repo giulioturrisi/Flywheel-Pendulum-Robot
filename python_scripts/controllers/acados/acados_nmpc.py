@@ -67,10 +67,10 @@ class NMPC:
         ocp.cost.yref_e = np.zeros((ny_e,))
 
         # set constraints
-        '''tau_max = 0.5 
-        ocp.constraints.lbu = np.array([-tau_max, -tau_max])
-        ocp.constraints.ubu = np.array([+tau_max, +tau_max])
-        ocp.constraints.idxbu = np.array([0,1])'''
+        tau_max = 0.5 
+        ocp.constraints.lbu = np.array([-tau_max])
+        ocp.constraints.ubu = np.array([+tau_max])
+        ocp.constraints.idxbu = np.array([0])
 
         X0 = np.array([0.0, 0.0, 0.0])
         ocp.constraints.x0 = X0

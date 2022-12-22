@@ -19,8 +19,8 @@ class Robot_dynamics:
         self.m_flywheel = 0.28 #mass flywheel - kg
         self.I_pendulum = 0.043 #inertia pend
         self.I_flywheel = 0.005 #inertia flywheel
-        self.l_p = 0.292 #distance from fulcrum pendulum to flywheel axis
-        self.l_c = 0.25 #distance from fulcrum pendulum to center of mass pendulum
+        self.l_p = 0.16 #distance from fulcrum pendulum to flywheel axis
+        self.l_c = 0.08 #distance from fulcrum pendulum to center of mass pendulum
 
         self.g = 9.81 #gravity
         

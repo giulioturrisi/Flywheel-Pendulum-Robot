@@ -30,9 +30,8 @@ class LQR:
         
 
         self.Q[0,0] = 10 #theta
-        
-        self.Q[1,1] = 2 #theta_dot
-        self.Q[2,2] = 0.1 #phi_dot
+        self.Q[1,1] = 0.2 #theta_dot
+        self.Q[2,2] = 0 #phi_dot
 
 
         self.R = np.identity(1)*1

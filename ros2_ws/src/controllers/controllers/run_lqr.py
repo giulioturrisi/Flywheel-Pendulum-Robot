@@ -32,7 +32,7 @@ class Controller(Base_Controller):
             torques = self.controller.compute_control(self.state_robot, self.state_d)
             
             print("control time: ", time.time()-start_time)
-
+            print("torques", torques)
             self.publish_command(torques)
 
 
