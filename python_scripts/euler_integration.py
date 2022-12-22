@@ -17,8 +17,6 @@ def euler_integration(state, qdd, dt):
     
     phi_dot = state[2]
     
-
-
     theta = theta + theta_dot*dt
     theta_dot = theta_dot + qdd[0]*dt
 

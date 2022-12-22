@@ -3,7 +3,8 @@ import math
 
 import sys
 sys.path.append('/home/python_scripts/')
-from twip_dynamics import Twip_dynamics
+import euler_integration
+from robot_dynamics import Robot_dynamics
 
 
 
@@ -11,48 +12,21 @@ class Feedback_Lin:
     """This is a small class that computes a simple PID control law"""
 
 
-    def __init__(self, k_x_d, k_pitch, k_pitch_d, k_yaw_d, k_i):
+    def __init__(self, k_p, k_d, k_i):
         """
         Args:
-            k_x_d (float): linear velocity gain
-            k_pitch (float): pitch angular position gain
-            k_pitch_d (float): pitch angular velocity gain
-            k_yaw_d (float): yaw angular velocity gain
-            k_i (float): pitch angular position integral gain, maybe better on the velocity!!
+            k_d (float): linear velocity gain
+            k_p (float): position gain
+            k_i (float): angular position integral gain
         """
+        self.state_dim = 3
         self.k_i = k_i 
-        self.k_x_d = k_x_d
-        self.k_pitch = k_pitch
-        self.k_pitch_d = k_pitch_d
-        self.k_yaw_d = k_yaw_d
+        self.k_d = k_d
+        self.k_p = k_p
 
-        self.integral_e_pitch = 0
+        self.integral_error = 0
 
-        self.twip = Twip_dynamics()
-
-
-
-    def calculate_errors(self,state, state_des):
-        """Compute PID errors signal
-
-        Args:
-            state (np.array): actual state of the robot
-            state_des (np.array): desired state
-
-        Returns:
-            (np.array): linear and angular error velocity 
-        """
-        e_pitch = self.k_pitch*(state_des[1] - state[1])  
-        e_pitch_d =  self.k_pitch_d*(state_des[4] - state[4])
-        self.integral_e_pitch += e_pitch
-        e_pitch_i = self.k_i*(self.integral_e_pitch)
-
-        e_vel = self.k_x_d*(state_des[3] - state[3])  
-        
-        e_yaw_d = self.k_yaw_d*(state_des[5] - state[5])
-
-        return np.array((e_vel, e_pitch + e_pitch_d + e_pitch_i, e_yaw_d))
-        
+        self.robot = Robot_dynamics()
 
 
     def compute_control(self, state, state_des):
@@ -66,12 +40,33 @@ class Feedback_Lin:
             (np.array): control inputs
 
         """
-        gen_forces = self.calculate_errors(state, state_des)
 
-        control_matrix = self.twip.inv_control_matrix()
+        tau = -(self.robot.d22/self.robot.det_D)*(-self.robot.m_bar*self.robot.g*np.sin(state[0]))/(self.robot.d12/self.robot.det_D)
+        
+        tau += -(self.k_p*(state_des[0] - state[0]) + self.k_d*(state_des[1] - state[1]))/(self.robot.d12/self.robot.det_D) 
 
-        u_ff = self.twip.compute_feed_forward(state_des[1])
+        
+        return tau
 
-        torque = control_matrix@gen_forces
 
-        return [u_ff + torque.item(0),u_ff + torque.item(1)]
+if __name__=="__main__":
+    controller = Feedback_Lin(k_p = 20, k_d = 0.5, k_i = 0.1)
+    state = np.zeros(controller.state_dim)
+    state[0] = .5 
+    state_des = np.zeros(controller.state_dim)
+    
+    dt = 0.001
+    for j in range(0,5000):
+        print("################")
+        tau = controller.compute_control(state, state_des=state_des)
+        tau = tau 
+        print("tau", tau)
+        print("state: ", state)
+
+        x_dot = controller.robot.forward_dynamics(state, tau)
+        qdd = x_dot[1:3]
+
+        state = euler_integration.euler_integration(state, qdd, dt).reshape(controller.state_dim,)
+
+        
+        
