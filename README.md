@@ -49,5 +49,12 @@ ulimit -s unlimited
 colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
 ```
 
+## List of available controllers
+1. Feedback Linearization
+2. Linear Quadratic Regulator
+3. Nonlinear MPC via Acados
+4. Iterative Linear Quadratic Regulator
+
+
 ## Real Robot
 The CAD files are from the wonderful project based on [SimpleFoc](https://github.com/simplefoc/Arduino-FOC-reaction-wheel-inverted-pendulum)
