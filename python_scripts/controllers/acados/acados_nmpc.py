@@ -42,7 +42,7 @@ class NMPC:
         ocp.dims.N = self.horizon
 
         # set cost
-        Q_mat = 2 * np.diag([5, 1, 0.1]) 
+        Q_mat = 2 * np.diag([5, 1, 0]) 
         R_mat = 2 * 5 * np.diag([1])
 
         ocp.cost.cost_type = "LINEAR_LS"
