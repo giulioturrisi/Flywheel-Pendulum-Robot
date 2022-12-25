@@ -66,7 +66,7 @@ The CAD files are from the wonderful project based on [SimpleFoc](https://github
 
 ## Some Gifs
 <p>
-    <img src="gifs/flywheel_robot_sim_stable_equilibria.gif" height="199px">
+    <img src="gifs/flywheel_robot_sim_stable_equilibria.gif" height="198px">
     <img src="gifs/flywheel_robot_sim_forced_equilibria.gif" height="200px">
 </p>
 
