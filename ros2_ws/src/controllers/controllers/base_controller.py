@@ -25,6 +25,8 @@ class Base_Controller(Node):
 
         self.robot = Robot_dynamics()
 
+        self.old_state_robot = np.zeros(self.robot.state_dim)
+
         self.state_robot = np.zeros(self.robot.state_dim)
         self.state_d = np.zeros(self.robot.state_dim)
 
@@ -56,6 +58,7 @@ class Base_Controller(Node):
 
 
     def state_callback(self, msg):
+        self.old_state_robot = copy.deepcopy(self.state_robot)
         self.state_robot[0] = msg.x
         self.state_robot[1] = msg.y
         self.state_robot[2] = msg.z

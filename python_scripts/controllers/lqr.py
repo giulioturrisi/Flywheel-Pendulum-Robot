@@ -31,7 +31,7 @@ class LQR:
 
         self.Q[0,0] = 10 #theta
         self.Q[1,1] = 0.2 #theta_dot
-        self.Q[2,2] = 0 #phi_dot
+        self.Q[2,2] = 0.01 #phi_dot
 
 
         self.R = np.identity(1)*1
@@ -66,7 +66,7 @@ class LQR:
             temp = (-np.linalg.pinv(Q_uu)@B_discrete.T@P_next@A_discrete)
             P_next = self.Q + A_discrete.T@P_next@A_discrete - temp.T@Q_uu@temp
             
-            self.K = (np.linalg.pinv(self.R + B_discrete.T@P_next@B_discrete)@B_discrete.T@P_next@A_discrete)
+        self.K = (np.linalg.pinv(self.R + B_discrete.T@P_next@B_discrete)@B_discrete.T@P_next@A_discrete)
 
         return self.K
 
