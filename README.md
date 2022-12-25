@@ -9,7 +9,7 @@ This repo contains the code for controlling both a real and a simulated flywheel
 
 4. ```docker_files```: collection of docker images for intel/nvidia/wsl
 
-![](https://github.com/giulioturrisi/Flywheel-Pendulum-Robot/tree/main/gifs/flywheel_robot_sim.gif)
+![](https://github.com/giulioturrisi/Flywheel-Pendulum-Robot/gifs/flywheel_robot_sim.gif)
 
  
 ## Dependencies
