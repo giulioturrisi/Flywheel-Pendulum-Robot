@@ -9,18 +9,11 @@ This repo contains the code for controlling both a real and a simulated flywheel
 
 4. ```docker_files```: collection of docker images for intel/nvidia/wsl
 
-## Some Gifs
-<p align="center">
-    <img src="gifs/flywheel_robot_sim.gif" height="200px">
-</p>
 
 ## Dependencies
 1. [ROS2](https://docs.ros.org/en/humble/Installation.html) Humble
 
 2. [CoppeliaSim](https://www.coppeliarobotics.com/downloads) and [Gazebo Garden](https://gazebosim.org/home)(TO DO) for simulations 
-
-
-
 
 
 ## Build on Linux
@@ -69,3 +62,9 @@ flywheel
 
 ## Real Robot
 The CAD files are from the wonderful project based on [SimpleFoc](https://github.com/simplefoc/Arduino-FOC-reaction-wheel-inverted-pendulum)
+
+
+## Some Gifs
+<p align="center">
+    <img src="gifs/flywheel_robot_sim.gif" height="200px">
+</p>
