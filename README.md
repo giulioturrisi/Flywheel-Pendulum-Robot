@@ -11,7 +11,7 @@ This repo contains the code for controlling both a real and a simulated flywheel
 
 ## Some Gifs
 <p align="center">
-    <img src="gifs/flywheel_robot_sim.gif" height="150px">
+    <img src="gifs/flywheel_robot_sim.gif" height="200px">
 </p>
 
 ## Dependencies
