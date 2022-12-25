@@ -64,11 +64,3 @@ flywheel
 The CAD files are from the wonderful project based on [SimpleFoc](https://github.com/simplefoc/Arduino-FOC-reaction-wheel-inverted-pendulum)
 
 
-## Some Gifs
-<p align="center">
-    <img src="gifs/flywheel_robot_sim_stable_equilibria.gif" height="200px">
-</p>
-<p align="center">
-    <img src="gifs/flywheel_robot_sim_forced_equilibria.gif" height="200px">
-</p>
-
