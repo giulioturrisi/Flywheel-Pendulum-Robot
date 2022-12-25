@@ -67,6 +67,6 @@ The CAD files are from the wonderful project based on [SimpleFoc](https://github
 ## Some Gifs
 <p align="center">
     <img src="gifs/flywheel_robot_sim2.gif" height="200px">
-    <img src="gifs/flywheel_robot_sim.gif" height="205px">
+    <img src="gifs/flywheel_robot_sim.gif" height="203px">
 </p>
 
