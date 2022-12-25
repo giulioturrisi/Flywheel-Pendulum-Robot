@@ -58,8 +58,9 @@ flywheel
 ## List of available controllers
 1. Feedback Linearization
 2. Linear Quadratic Regulator
-3. Nonlinear MPC via Acados
-4. Iterative Linear Quadratic Regulator
+3. Adaptive Linear Quadratic Regulator
+4. Nonlinear MPC via Acados
+5. Iterative Linear Quadratic Regulator
 
 
 ## Real Robot
