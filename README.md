@@ -1,5 +1,5 @@
 ## Overview
-This repo contains the code for controlling both a real and a simulated two wheeled inverted pendulum robot via ROS2. It includes the following folders:
+This repo contains the code for controlling both a real and a simulated flywheel pendulum robot via ROS2. It includes the following folders:
 
 1. ```python_scripts```: most of the ROS2 nodes call some classes here
  
