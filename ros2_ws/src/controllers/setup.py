@@ -20,6 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': ['run_lqr = controllers.run_lqr:main',
+                            'run_adaptive_lqr = controllers.run_adaptive_lqr:main',
                             'run_ilqr = controllers.run_ilqr:main',
                             'run_feedback_lin = controllers.run_feedback_lin:main',
                             'run_acados_nmpc = controllers.run_acados_nmpc:main'
