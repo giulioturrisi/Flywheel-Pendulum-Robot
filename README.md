@@ -9,9 +9,11 @@ This repo contains the code for controlling both a real and a simulated flywheel
 
 4. ```docker_files```: collection of docker images for intel/nvidia/wsl
 
-![](https://github.com/giulioturrisi/Flywheel-Pendulum-Robot/blob/main/gifs/flywheel_robot_sim.gif | width=50)
 
- 
+<p align="center">
+    <img src="gifs/flywheel_robot_sim.gif" height="350px">
+</p>
+
 ## Dependencies
 1. [ROS2](https://docs.ros.org/en/humble/Installation.html) Humble
 
