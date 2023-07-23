@@ -57,7 +57,8 @@ flywheel
 2. Linear Quadratic Regulator
 3. Adaptive Linear Quadratic Regulator
 4. Nonlinear MPC via Acados
-5. Iterative Linear Quadratic Regulator
+4. Nonlinear MPC via Casadi
+6. Iterative Linear Quadratic Regulator
 
 
 ## Real Robot
