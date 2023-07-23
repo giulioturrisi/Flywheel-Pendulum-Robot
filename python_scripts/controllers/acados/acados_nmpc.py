@@ -8,8 +8,9 @@ import time
 import sys
 sys.path.append('/home/python_scripts/')
 import euler_integration
-from robot_dynamics import Robot_dynamics
 
+#from robot_dynamics import Robot_dynamics
+from pinocchio_dynamics import Robot_dynamics
 
 class NMPC:
     def __init__(self, horizon, dt):
@@ -43,7 +44,7 @@ class NMPC:
 
         # set cost
         Q_mat = 2 * np.diag([5, 1, 0]) 
-        R_mat = 2 * 5 * np.diag([1])
+        R_mat = 0.001 * np.diag([1])
 
         ocp.cost.cost_type = "LINEAR_LS"
         ocp.cost.cost_type_e = "LINEAR_LS"

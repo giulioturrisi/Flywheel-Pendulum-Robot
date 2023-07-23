@@ -27,8 +27,6 @@ class LQR:
         self.robot = Robot_dynamics()
 
         self.Q = np.identity(self.state_dim)
-        
-
         self.Q[0,0] = 10 #theta
         self.Q[1,1] = 0.2 #theta_dot
         self.Q[2,2] = 0.01 #phi_dot

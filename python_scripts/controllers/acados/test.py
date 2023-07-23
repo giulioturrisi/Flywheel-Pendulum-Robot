@@ -8,14 +8,17 @@ import time
 import sys
 sys.path.append('/home/python_scripts/')
 import euler_integration
-from robot_dynamics import Robot_dynamics
+
+from robot_dynamics import Robot_dynamics as Robot_dynamics_casadi
+from pinocchio_dynamics import Robot_dynamics as Robot_dynamics_pinocchio_casadi
 
 X0 = np.array([1.8, 1, 0.0])  # Intitalize the states 
 N_horizon = 50  # Define the number of discretization steps
 T_horizon = 1.0  # Define the prediction horizon
 dt = 1.0/50
 
-robot = Robot_dynamics()
+robot_casadi = Robot_dynamics_casadi()
+robot_casadi_pinocchio = Robot_dynamics_pinocchio_casadi()
 
 
 
@@ -33,8 +36,8 @@ def create_ocp_solver_description() -> AcadosOcp:
     ocp.dims.N = N_horizon
 
     # set cost
-    Q_mat = 2 * np.diag([5, 1, 0.1])  # [x,y,x_d,y_d,th,th_d]
-    R_mat = 2 * 5 * np.diag([1])
+    Q_mat = 2 * np.diag([5, 0.1, 0])  # [x,y,x_d,y_d,th,th_d]
+    R_mat = 0.001 * np.diag([1])
 
     ocp.cost.cost_type = "LINEAR_LS"
     ocp.cost.cost_type_e = "LINEAR_LS"
@@ -132,14 +135,18 @@ def closed_loop_simulation():
         print("control time: ", time.time()-start_time)
 
         # simulate system
-        next_state = robot.fd(xcurrent,simU[i, :]); 
+        #next_state = robot.fd(xcurrent, simU[i, :]);
+        
+        next_state = robot_casadi.forward_dynamics(xcurrent, simU[i, :]);
         qdd = next_state[1:3]
+        print("state: ", euler_integration.euler_integration(xcurrent, qdd, dt))
 
+        next_state = robot_casadi_pinocchio.forward_dynamics(xcurrent, simU[i, :])
+        qdd = next_state[1:3]
         # integration
         xcurrent = euler_integration.euler_integration(xcurrent, qdd, dt)
-
-
         print("state: ", xcurrent)
+        
         simX[i + 1, :] = xcurrent
 
 
