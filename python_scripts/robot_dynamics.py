@@ -59,9 +59,8 @@ class Robot_dynamics:
         Returns:
             (np.array): instantaneous acceleration of the system and velocity
         """
-        #angle_pend, angle_flywheel, angle_dot_pendulun, angle_dot_flywheel
+        
         theta = state[0] 
-        #phi = state[1]
         theta_dot = state[1]
         phi_dot = state[2]
          

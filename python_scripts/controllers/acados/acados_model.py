@@ -3,7 +3,8 @@ from casadi import SX, vertcat
 
 import sys
 sys.path.append('/home/python_scripts/')
-from robot_dynamics import Robot_dynamics
+#from robot_dynamics import Robot_dynamics
+from pinocchio_dynamics import Robot_dynamics
 
 # Reference for model equations:
 # http://users.isr.ist.utl.pt/~jag/publications/08-JETC-RCarona-vcontrol.pdf
@@ -13,8 +14,6 @@ def export_robot_model() -> AcadosModel:
 
     # set up states & controls
     theta = SX.sym("theta")
-
-
     theta_d = SX.sym("theta_d")
     phi_d = SX.sym("phi_d")
     
@@ -39,9 +38,10 @@ def export_robot_model() -> AcadosModel:
     p = []
 
     # dynamics
-    #f_expl = vertcat(v * cos(theta), v * sin(theta), F, theta_d, T)
     robot = Robot_dynamics()
-    f_expl = robot.fd(x, u)
+    print("x", x.shape)
+    print("u", u.shape)
+    f_expl = robot.forward_dynamics(x, u)
 
     print("f_expl", f_expl)
 

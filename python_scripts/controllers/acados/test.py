@@ -12,10 +12,11 @@ import euler_integration
 from robot_dynamics import Robot_dynamics as Robot_dynamics_casadi
 from pinocchio_dynamics import Robot_dynamics as Robot_dynamics_pinocchio_casadi
 
-X0 = np.array([1.8, 1, 0.0])  # Intitalize the states 
-N_horizon = 50  # Define the number of discretization steps
-T_horizon = 1.0  # Define the prediction horizon
-dt = 1.0/50
+X0 = np.array([1, 0, 0.0])  # Intitalize the states 
+N_horizon = 100  # Define the number of discretization steps
+dt = 0.005
+T_horizon = dt*N_horizon  # Define the prediction horizon
+
 
 robot_casadi = Robot_dynamics_casadi()
 robot_casadi_pinocchio = Robot_dynamics_pinocchio_casadi()
@@ -36,8 +37,8 @@ def create_ocp_solver_description() -> AcadosOcp:
     ocp.dims.N = N_horizon
 
     # set cost
-    Q_mat = 2 * np.diag([5, 0.1, 0])  # [x,y,x_d,y_d,th,th_d]
-    R_mat = 0.001 * np.diag([1])
+    Q_mat = 2 * np.diag([10, 0, 0])  # [theta, theta_dot, phi_dot]
+    R_mat = 0.0001 * np.diag([1])
 
     ocp.cost.cost_type = "LINEAR_LS"
     ocp.cost.cost_type_e = "LINEAR_LS"
@@ -95,7 +96,7 @@ def closed_loop_simulation():
 
 
     # prepare simulation
-    Nsim = 1000
+    Nsim = 10000
     nx = ocp.model.x.size()[0]
     nu = ocp.model.u.size()[0]
 
@@ -132,21 +133,22 @@ def closed_loop_simulation():
         simU[i, :] = acados_ocp_solver.get(0, "u")
 
 
+        print("###############")
         print("control time: ", time.time()-start_time)
 
         # simulate system
         #next_state = robot.fd(xcurrent, simU[i, :]);
         
-        next_state = robot_casadi.forward_dynamics(xcurrent, simU[i, :]);
-        qdd = next_state[1:3]
-        print("state: ", euler_integration.euler_integration(xcurrent, qdd, dt))
+        #next_state = robot_casadi.forward_dynamics(xcurrent, simU[i, :]);
+        #qdd = next_state[1:3]
+        #print("state: ", euler_integration.euler_integration(xcurrent, qdd, dt))
 
         next_state = robot_casadi_pinocchio.forward_dynamics(xcurrent, simU[i, :])
         qdd = next_state[1:3]
+        
         # integration
         xcurrent = euler_integration.euler_integration(xcurrent, qdd, dt)
         print("state: ", xcurrent)
-        
         simX[i + 1, :] = xcurrent
 
 
