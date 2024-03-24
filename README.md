@@ -27,7 +27,6 @@ It includes the following folders:
 
 
 ## Build on Linux
-## Build on Linux
 1. clone the repo recursively
 
 ```sh
