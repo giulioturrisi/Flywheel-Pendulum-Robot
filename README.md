@@ -28,40 +28,70 @@ It includes the following folders:
 
 
 ## Build on Linux
-1. clone the repo
+## Build on Linux
+1. clone the repo recursively
+
 ```sh
-git clone --recurse-submodules https://github.com/giulioturrisi/Flywheel-Pendulum-Robot.git
+git clone --recurse-submodules https://github.com/giulioturrisi/Flywheel-Robot.git
 ```
 
-2. build the docker file inside Flywheel-Pendulum-Robot/docker_file/integrated_gpu or /nvidia
+
+2. install [miniforge](https://github.com/conda-forge/miniforge/releases) (x86_64) 
+
+
+3. create an environment using the file in the folder [installation/conda](https://github.com/giulioturrisi/Flywheel-Robot/tree/master/installation/conda):
+
 ```sh
-docker build -t ros2_flywheel .
+    conda env create -f mamba_environment.yml
+``` 
+
+4. follow the instruction [here](https://robostack.github.io/GettingStarted.html) to install ros-humble
+
+
+5. download [CoppeliaSim](https://www.coppeliarobotics.com/) 
+
+6. add in your .bashrc
+
+```sh
+alias twip_env="conda activate twip_env && source your_path_to/Flywheel-Robot/ros2_ws/install/setup.bash"
+export COPPELIASIM_ROOT_DIR=your_path_to/CoppeliaSim
 ```
 
-4. add alias to start the docker
+7. start your environment and go in ros2_ws
 ```sh
-cd 
-gedit .bashrc
-alias flywheel_humble='xhost + && docker run -it --rm -v /path/to/your_folder/Flywheel-Pendulum-Robot:/home/ -v /tmp/.X11-unix:/tmp/.X11-unix:rw --device=/dev/input/ -e DISPLAY=$DISPLAY -e WAYLAND_DISPLAY=$WAYLAND_DISPLAY  -e QT_X11_NO_MITSHM=1 --gpus all --name flywheel_image ros2_flywheel'  (if used /nvidia)
-alias flywheel_humble="xhost + && docker run -it --rm -v /path/to/your_folder/Flywheel-Pendulum-Robot:/home/ -v /tmp/.X11-unix:/tmp/.X11-unix --device=/dev/dri --device=/dev/input/ -e DISPLAY=$DISPLAY -e WAYLAND_DISPLAY=$WAYLAND_DISPLAY --name flywheel_image  ros2_flywheel" (if used /integrated_gpu)
-alias flywheel_humble='xhost + && docker run -it --rm -v /path/to/your_folder/Flywheel-Pendulum-Robot:/home/ -v /tmp/.X11-unix:/tmp/.X11-unix -v /mnt/wslg:/mnt/wslg -v /usr/lib/wsl:/usr/lib/wsl --device=/dev/dxg -e DISPLAY=$DISPLAY -e WAYLAND_DISPLAY=$WAYLAND_DISPLAY -e XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR -e PULSE_SERVER=$PULSE_SERVER -e LD_LIBRARY_PATH=/usr/lib/wsl/lib --name flywheel_image ros2_flywheel' (if Windows Linux Subsystem)
-
-alias flywheel='docker exec -it flywheel_image bash' (to attach a new terminal to the running docker)
-```
-
-5. start docker and build
-```sh
-flywheel_humble
-cd ros2_ws
+twip_env
+cd your_path_to/Flywheel/ros2_ws
 rosdep install -y -r -q --from-paths src --ignore-src --rosdistro humble
 ulimit -s unlimited
 colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
 ```
 
-6. to attach additional terminals to the running docker use
+8. if you need acados, go inside the [acados](https://github.com/giulioturrisi/Flywheel-Robot/tree/master/python_scripts/controllers/acados)/acados folder and press
+  
 ```sh
-flywheel
+mkdir build
+cd build
+cmake -DACADOS_WITH_QPOASES=ON  -DACADOS_WITH_OSQP=ON ..
+make install -j4
+pip install -e ./../interfaces/acados_template
 ```
+then in your .bashrc, add
+```sh
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:"/your_path_to/Flywheel-Robot/python_scripts/controllers/acados/lib"
+export ACADOS_SOURCE_DIR="/your_path_to/Flywheel-Robot/python_scripts/controllers/acados"
+```
+
+## How to run the simulation
+1. Open Coppeliasim and run the scene `scene.ttt` in the folder coppeliasim_simulation 
+```sh
+./coppeliaSim.sh -f your_path_to/Flywheel-Robot/coppeliasim_simulation/scene.ttt 
+```
+
+2. on a new terminal 
+```sh
+ros2 run controllers <control_node>                     
+```
+where in <control_node> you can choose the type of controller you want. 
 
 
 
