@@ -30,14 +30,14 @@ It includes the following folders:
 1. clone the repo recursively
 
 ```sh
-git clone --recurse-submodules https://github.com/giulioturrisi/Flywheel-Robot.git
+git clone --recurse-submodules https://github.com/giulioturrisi/Flywheel-Pendulum-Robot.git
 ```
 
 
 2. install [miniforge](https://github.com/conda-forge/miniforge/releases) (x86_64) 
 
 
-3. create an environment using the file in the folder [installation/conda](https://github.com/giulioturrisi/Flywheel-Robot/tree/master/installation/conda):
+3. create an environment using the file in the folder [installation/conda](https://github.com/giulioturrisi/Flywheel-Pendulum-Robot/tree/master/installation/conda):
 
 ```sh
     conda env create -f mamba_environment.yml
@@ -64,7 +64,7 @@ ulimit -s unlimited
 colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
 ```
 
-8. if you need acados, go inside the [acados](https://github.com/giulioturrisi/Flywheel-Robot/tree/master/python_scripts/controllers/acados)/acados folder and press
+8. if you need acados, go inside the [acados](https://github.com/giulioturrisi/Flywheel-Pendulum-Robot/tree/master/python_scripts/controllers/acados)/acados folder and press
   
 ```sh
 mkdir build
@@ -75,14 +75,14 @@ pip install -e ./../interfaces/acados_template
 ```
 then in your .bashrc, add
 ```sh
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:"/your_path_to/Flywheel-Robot/python_scripts/controllers/acados/lib"
-export ACADOS_SOURCE_DIR="/your_path_to/Flywheel-Robot/python_scripts/controllers/acados"
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:"/your_path_to/Flywheel-Pendulum-Robot/python_scripts/controllers/acados/lib"
+export ACADOS_SOURCE_DIR="/your_path_to/Flywheel-Pendulum-Robot/python_scripts/controllers/acados"
 ```
 
 ## How to run the simulation
 1. Open Coppeliasim and run the scene `scene.ttt` in the folder coppeliasim_simulation 
 ```sh
-./coppeliaSim.sh -f your_path_to/Flywheel-Robot/coppeliasim_simulation/scene.ttt 
+./coppeliaSim.sh -f your_path_to/Flywheel-Pendulum-Robot/coppeliasim_simulation/scene.ttt 
 ```
 
 2. on a new terminal 
