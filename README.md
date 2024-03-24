@@ -18,13 +18,12 @@ It includes the following folders:
 
 3. ```ros2_ws```: collection of ROS2 nodes for controlling the robot
 
-4. ```docker_files```: collection of docker images for intel/nvidia/wsl
 
 
 ## Dependencies
 1. [ROS2](https://docs.ros.org/en/humble/Installation.html) Humble
 
-2. [CoppeliaSim](https://www.coppeliarobotics.com/downloads) and [Gazebo Garden](https://gazebosim.org/home)(TO DO) for simulations 
+2. [CoppeliaSim](https://www.coppeliarobotics.com/downloads)
 
 
 ## Build on Linux
