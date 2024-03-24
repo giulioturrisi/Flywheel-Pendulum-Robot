@@ -2,8 +2,12 @@ import numpy as np
 import casadi as cs
 import time
 
+import os 
+dir_path = os.path.dirname(os.path.realpath(__file__))
+
 import sys
-sys.path.append('/home/python_scripts/')
+sys.path.append(dir_path + '/../')
+
 from pinocchio_dynamics import Robot_dynamics
 import euler_integration
 

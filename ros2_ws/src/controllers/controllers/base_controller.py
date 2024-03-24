@@ -13,7 +13,12 @@ import time
 import numpy as np # type: ignore
 import sys
 np.set_printoptions(threshold=sys.maxsize)
-sys.path.append('/home/python_scripts/')
+
+import os 
+dir_path = os.path.dirname(os.path.realpath(__file__))
+
+sys.path.append(dir_path + '/../../../../python_scripts')
+
 from robot_dynamics import Robot_dynamics
 
 class Base_Controller(Node):
@@ -53,7 +58,7 @@ class Base_Controller(Node):
     def publish_command(self, torque):
 
         commanded_torque = Float64()
-        commanded_torque.data = np.float(torque)
+        commanded_torque.data = float(torque)
         self.publisher_command.publish(commanded_torque)
 
 

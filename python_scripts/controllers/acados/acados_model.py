@@ -1,8 +1,11 @@
 from acados_template import AcadosModel
 from casadi import SX, vertcat
 
+import os 
+dir_path = os.path.dirname(os.path.realpath(__file__))
+
 import sys
-sys.path.append('/home/python_scripts/')
+sys.path.append(dir_path + '/../../')
 #from robot_dynamics import Robot_dynamics
 from pinocchio_dynamics import Robot_dynamics
 
