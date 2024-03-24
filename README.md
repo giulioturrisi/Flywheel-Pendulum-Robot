@@ -1,5 +1,16 @@
 ## Overview
-This repo contains the code for controlling both a real and a simulated flywheel pendulum robot via ROS2. It includes the following folders:
+This repo contains the code for controlling both a real and a simulated flywheel pendulum robot via ROS2. 
+
+## List of available controllers
+1. Feedback Linearization
+2. Linear Quadratic Regulator
+3. Adaptive Linear Quadratic Regulator
+4. Nonlinear MPC via Acados
+4. Nonlinear MPC via Casadi
+6. Iterative Linear Quadratic Regulator
+
+## Repository structure
+It includes the following folders:
 
 1. ```python_scripts```: most of the ROS2 nodes call some classes here
  
@@ -52,13 +63,7 @@ colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
 flywheel
 ```
 
-## List of available controllers
-1. Feedback Linearization
-2. Linear Quadratic Regulator
-3. Adaptive Linear Quadratic Regulator
-4. Nonlinear MPC via Acados
-4. Nonlinear MPC via Casadi
-6. Iterative Linear Quadratic Regulator
+
 
 
 ## Real Robot
