@@ -14,7 +14,7 @@ It includes the following folders:
 
 1. ```python_scripts```: most of the ROS2 nodes call some classes here
  
-2. ```simulations```: scenes used for simulating the robot with CoppeliaSim and Gazebo Garden
+2. ```coppeliasim_simulation```: scenes used for simulating the robot with CoppeliaSim
 
 3. ```ros2_ws```: collection of ROS2 nodes for controlling the robot
 
