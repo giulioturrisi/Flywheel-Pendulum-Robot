@@ -53,7 +53,7 @@ git clone --recurse-submodules https://github.com/giulioturrisi/Flywheel-Robot.g
 6. add in your .bashrc
 
 ```sh
-alias twip_env="conda activate twip_env && source your_path_to/Flywheel-Robot/ros2_ws/install/setup.bash"
+alias twip_env="conda activate flywheel_env && source your_path_to/Flywheel-Robot/ros2_ws/install/setup.bash"
 export COPPELIASIM_ROOT_DIR=your_path_to/CoppeliaSim
 ```
 
