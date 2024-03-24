@@ -51,14 +51,14 @@ git clone --recurse-submodules https://github.com/giulioturrisi/Flywheel-Pendulu
 6. add in your .bashrc
 
 ```sh
-alias twip_env="conda activate flywheel_env && source your_path_to/Flywheel-Robot/ros2_ws/install/setup.bash"
+alias twip_env="conda activate flywheel_env && source your_path_to/Flywheel-Pendulum-Robot/ros2_ws/install/setup.bash"
 export COPPELIASIM_ROOT_DIR=your_path_to/CoppeliaSim
 ```
 
 7. start your environment and go in ros2_ws
 ```sh
 twip_env
-cd your_path_to/Flywheel/ros2_ws
+cd your_path_to/Flywheel-Pendulum-Robot/ros2_ws
 rosdep install -y -r -q --from-paths src --ignore-src --rosdistro humble
 ulimit -s unlimited
 colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
