@@ -1,0 +1,57 @@
+<mujoco model="flywheel_pendulum">
+  <compiler angle="radian" meshdir="assets" autolimits="true"/>
+
+  <option cone="elliptic" impratio="100"/>
+
+  <default>
+    <default class="flywheel_pendulum">
+      <joint damping="0.1" frictionloss="0"/>  
+    </default>
+    <default class="visual">
+      <geom type="mesh" group="2" contype="0" conaffinity="0"/>
+    </default>
+    <default class="collision">
+      <geom type="cylinder" group="3" mass="0" density="0"/>
+    </default>
+  </default>
+
+  <asset>
+    <material name="metal" rgba=".9 .95 .95 1"/>
+    <material name="black" rgba="0 0 0 1"/>
+    <material name="white" rgba="1 1 1 1"/>
+    <material name="gray" rgba="0.671705 0.692426 0.774270 1"/>
+
+    <mesh file="pendulum_arm.stl"/>
+    <mesh file="reaction_wheel.stl"/>
+
+  </asset>
+
+  <worldbody>
+    <body name="base" pos="0.1 0 0.445" childclass="flywheel_pendulum">
+      
+      
+      <body name="pendulum" pos="0.0 0.0 0">
+        
+        <joint name="pendulum_joint" axis="0 1 0" pos="-0.085 0 -0.085"/>
+        <geom mesh="pendulum_arm" material="gray" class="visual" mass="0.2"/>
+
+        <body name="flywheel" pos="0 0.01 0.0">
+          
+          <joint name="flywheel_joint" axis="0 1 0"/>
+          <geom mesh="reaction_wheel" material="gray" class="visual"  mass="1"/>
+        </body>
+
+      </body>
+      
+    </body>
+  </worldbody>
+
+  <actuator>
+    <motor name="pendulum_joint" joint="pendulum_joint" ctrlrange="-30 30"/>
+    <motor name="flywheel_joint" joint="flywheel_joint" ctrlrange="-30 30"/>
+  </actuator>
+
+  <keyframe>
+    <key name="home" qpos="0 0"/>
+  </keyframe>
+</mujoco>

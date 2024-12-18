@@ -6,7 +6,11 @@ from pinocchio import casadi as cpin
 class Robot_dynamics:
 
     def __init__(self,):
-        model = pinocchio.buildModelFromUrdf("/home/simulations/urdf/flywheel_pendulum.urdf")
+        
+        import os 
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+
+        model = pinocchio.buildModelFromUrdf(dir_path + "/../coppeliasim_simulation/urdf/flywheel_pendulum.urdf")
  
         cmodel = cpin.Model(model)
         cdata = cmodel.createData()
