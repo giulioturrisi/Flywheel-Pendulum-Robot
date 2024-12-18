@@ -25,8 +25,7 @@ class Base_Controller(Node):
     def __init__(self, name):
         super().__init__(name)
 
-        self.state_arrived = False
-        self.dt = 0.01
+        self.dt = 0.1
 
         self.robot = Robot_dynamics()
 
@@ -42,13 +41,13 @@ class Base_Controller(Node):
 
  
         # Sincronization with simulation ---------------------------------------
-        self.enableSyncMode = Bool();
-        self.enableSyncMode.data = True;
-        self.publisher_enableSyncMode =self.create_publisher(Bool,"enableSyncMode", 1);
+        self.enableSyncMode = Bool()
+        self.enableSyncMode.data = False
+        self.publisher_enableSyncMode = self.create_publisher(Bool,"enableSyncMode", 1);
         self.publisher_enableSyncMode.publish(self.enableSyncMode)
 
-        self.triggerNextStep = Bool();
-        self.triggerNextStep.data = True;
+        self.triggerNextStep = Bool()
+        self.triggerNextStep.data = True
         self.publisher_triggerNextStep = self.create_publisher(Bool,"triggerNextStep", 1);
 
         self.simStep_done = True
@@ -68,8 +67,7 @@ class Base_Controller(Node):
         self.state_robot[1] = msg.y
         self.state_robot[2] = msg.z
 
-        self.state_arrived = True
-
+        
 
     def simStep_callback(self,msg):
         self.simStep_done = True

@@ -32,7 +32,7 @@ class Controller(Base_Controller):
 
 
     def controller_callback(self):
-        if(self.simStep_done):
+        if(self.enableSyncMode.data == False or self.simStep_done):
             print("###############")
             print("state robot: ", self.state_robot)
             start_time = time.time()
@@ -40,6 +40,7 @@ class Controller(Base_Controller):
             torques = self.controller.compute_control(self.state_robot, self.state_d)
             
             print("control time: ", time.time()-start_time)
+            print("torques", torques)
 
             self.publish_command(torques)
 
