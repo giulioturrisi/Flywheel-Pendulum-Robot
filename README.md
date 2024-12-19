@@ -1,5 +1,5 @@
 ## Overview
-This repo contains the code for controlling both a real and a simulated flywheel pendulum robot via ROS2. 
+This repo contains the code for controlling both a real and a simulated (in [Mujoco](https://github.com/google-deepmind/mujoco) or [CoppeliaSim](https://www.coppeliarobotics.com/downloads)) flywheel pendulum robot via ROS2. 
 
 ## List of available controllers
 1. Feedback Linearization
@@ -25,6 +25,10 @@ It includes the following folders:
 
 2. [CoppeliaSim](https://www.coppeliarobotics.com/downloads)
 
+or
+
+3. [Mujoco](https://github.com/google-deepmind/mujoco)
+
 
 ## Build on Linux
 1. clone the repo recursively
@@ -46,13 +50,13 @@ git clone --recurse-submodules https://github.com/giulioturrisi/Flywheel-Pendulu
 4. follow the instruction [here](https://robostack.github.io/GettingStarted.html) to install ros-humble
 
 
-5. download [CoppeliaSim](https://www.coppeliarobotics.com/) 
+5. download [CoppeliaSim](https://www.coppeliarobotics.com/) (if using Mujoco, this is not needed)
 
 6. add in your .bashrc
 
 ```sh
-alias twip_env="conda activate flywheel_env && source your_path_to/Flywheel-Pendulum-Robot/ros2_ws/install/setup.bash"
-export COPPELIASIM_ROOT_DIR=your_path_to/CoppeliaSim
+alias flywheel_env="conda activate flywheel_env && source your_path_to/Flywheel-Pendulum-Robot/ros2_ws/install/setup.bash"
+export COPPELIASIM_ROOT_DIR=your_path_to/CoppeliaSim (if using Mujoco, this is not needed)
 ```
 
 7. start your environment and go in ros2_ws
@@ -83,6 +87,12 @@ export ACADOS_SOURCE_DIR="/your_path_to/Flywheel-Pendulum-Robot/python_scripts/c
 1. Open Coppeliasim and run the scene `scene.ttt` in the folder coppeliasim_simulation 
 ```sh
 ./coppeliaSim.sh -f your_path_to/Flywheel-Pendulum-Robot/coppeliasim_simulation/scene.ttt 
+```
+
+or if you use Mujoco
+
+```sh
+ros2 run simulations run_mujoco_simulation.py 
 ```
 
 2. on a new terminal 
