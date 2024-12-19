@@ -63,6 +63,7 @@ class Base_Controller(Node):
 
     def state_callback(self, msg):
         self.old_state_robot = copy.deepcopy(self.state_robot)
+        
         self.state_robot[0] = msg.x
         self.state_robot[1] = msg.y
         self.state_robot[2] = msg.z

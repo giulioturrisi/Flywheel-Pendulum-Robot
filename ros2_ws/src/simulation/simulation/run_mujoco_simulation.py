@@ -45,15 +45,14 @@ class Wrapper_Mujoco_simulation(Node):
 
     def publish_state(self,):
 
+        state_temp = self.sim.step(self.old_commanded_torque)
+        
         state_robot = Vector3()
-        state_robot.x = self.sim.mjData.qpos[0]
-        state_robot.y = self.sim.mjData.qvel[0]
-        state_robot.z = self.sim.mjData.qvel[1]
+        state_robot.x = state_temp[0]
+        state_robot.y = state_temp[1]
+        state_robot.z = state_temp[2]
         self.publisher_state.publish(state_robot)
 
-        print("state_robot: ", self.sim.mjData.qpos)
-
-        self.sim.step(self.old_commanded_torque)
         self.sim.render()
 
         

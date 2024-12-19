@@ -30,15 +30,15 @@
     <body name="base" pos="0.1 0 0.445" childclass="flywheel_pendulum">
       
       
-      <body name="pendulum" pos="0.0 0.0 0">
+      <body name="pendulum" pos="0.0 0.0 0" quat="-0.3 0 -0.7173561 0">
         
         <joint name="pendulum_joint" axis="0 1 0" pos="-0.085 0 -0.085"/>
-        <geom mesh="pendulum_arm" material="gray" class="visual" mass="0.2"/>
+        <geom mesh="pendulum_arm" material="gray" class="visual" mass="0.3"/>
 
         <body name="flywheel" pos="0 0.01 0.0">
           
           <joint name="flywheel_joint" axis="0 1 0"/>
-          <geom mesh="reaction_wheel" material="gray" class="visual"  mass="1"/>
+          <geom mesh="reaction_wheel" material="gray" class="visual"  mass="0.28"/>
         </body>
 
       </body>
@@ -47,11 +47,11 @@
   </worldbody>
 
   <actuator>
-    <motor name="pendulum_joint" joint="pendulum_joint" ctrlrange="-30 30"/>
-    <motor name="flywheel_joint" joint="flywheel_joint" ctrlrange="-30 30"/>
+    <motor name="pendulum_joint" joint="pendulum_joint" ctrlrange="-5 5"/>
+    <motor name="flywheel_joint" joint="flywheel_joint" ctrlrange="-10 10"/>
   </actuator>
 
   <keyframe>
-    <key name="home" qpos="0 0"/>
+    <key name="home" qpos="-3.14 0"/>
   </keyframe>
 </mujoco>
