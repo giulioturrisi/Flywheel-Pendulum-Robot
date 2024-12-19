@@ -23,11 +23,7 @@ It includes the following folders:
 ## Dependencies
 1. [ROS2](https://docs.ros.org/en/humble/Installation.html) Humble
 
-2. [CoppeliaSim](https://www.coppeliarobotics.com/downloads)
-
-or
-
-3. [Mujoco](https://github.com/google-deepmind/mujoco)
+2. [CoppeliaSim](https://www.coppeliarobotics.com/downloads) or [Mujoco](https://github.com/google-deepmind/mujoco)
 
 
 ## Build on Linux
